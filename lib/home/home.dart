@@ -42,9 +42,9 @@ class _HomeState extends State<Home> {
           child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GridView.count(
-            crossAxisCount: 2, // Number of columns
-            crossAxisSpacing: 7.0, // Spacing between columns
-            mainAxisSpacing: 7.0, // Spacing between rows
+            crossAxisCount: 2,
+            crossAxisSpacing: 20.0,
+            mainAxisSpacing: 100.0,
             children: List.generate(_products.length, (index) {
               return ProductCart(_products[index]);
             })),

@@ -31,7 +31,7 @@ ThemeData primaryTheme = ThemeData(
   // text theme :
   textTheme: const TextTheme().copyWith(
     bodyMedium: const TextStyle(
-      fontSize: 16,
+      fontSize: 14,
       letterSpacing: 1,
     ),
     headlineMedium: const TextStyle(

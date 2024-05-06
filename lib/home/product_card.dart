@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:my_tshirt/home/rating.dart';
 import 'package:my_tshirt/models/product.dart';
 import 'package:my_tshirt/shared/styled_button.dart';
 import 'package:my_tshirt/shared/styled_text.dart';
@@ -16,49 +18,41 @@ class ProductCart extends StatefulWidget {
 class _ProductCartState extends State<ProductCart> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Expanded(
-            child: Image.asset(
-              widget.product.image,
+    return Flexible(
+      child: Expanded(
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.favorite,
+                  size: 24,
+                ),
+                onPressed: () {},
+              ),
             ),
-          ),
-          StyledHeading(widget.product.nom),
-          StyledText('${widget.product.price}\$'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.star,
-                color: Colors.yellow[700],
-                size: 16,
+            AspectRatio(
+              aspectRatio: 1.0, // Adjust aspect ratio as needed
+              child: Image.asset(
+                widget.product.image,
+                fit: BoxFit.cover, // Cover ensures the image fills the space
               ),
-              Icon(
-                Icons.star,
-                color: Colors.yellow[700],
-                size: 16,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            StyledHeading(widget.product.nom),
+            StyledText('${widget.product.price}\$'),
+            StyledButton(
+              onPressed: () {},
+              child: StyledText(
+                "add to cart",
+                color: Colors.white,
               ),
-              Icon(
-                Icons.star,
-                color: Colors.yellow[700],
-                size: 16,
-              ),
-              Icon(
-                Icons.star,
-                color: Colors.yellow[700],
-                size: 16,
-              ),
-              Icon(
-                Icons.star,
-                color: Colors.yellow[700],
-                size: 16,
-              ),
-            ],
-          ),
-          StyledButton(onPressed: () {}, child: StyledText("view details"))
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
