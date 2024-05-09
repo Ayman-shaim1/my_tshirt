@@ -40,7 +40,7 @@ ThemeData primaryTheme = ThemeData(
       fontWeight: FontWeight.bold,
     ),
     titleMedium: const TextStyle(
-      fontSize: 18,
+      fontSize: 21,
       letterSpacing: 2.0,
       fontWeight: FontWeight.bold,
     ),
