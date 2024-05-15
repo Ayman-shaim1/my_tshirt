@@ -63,70 +63,94 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            StyledHeading("Lorem ipsum dolor sit amet"),
-            const SizedBox(
-              height: 20,
-            ),
-            Stack(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  "assets/images/bg-2.png",
-                  fit: BoxFit.contain,
+                StyledHeading("Lorem ipsum dolor sit amet"),
+                const SizedBox(
+                  height: 20,
                 ),
-                Positioned(
-                  top: 8,
-                  // left: 8,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        StyledText(
-                          "Lorem ipsum dolor sit amet, consectetur adipisci",
-                          color: Colors.white,
-                        ),
-                        StyledText(
-                          "Cras consectetur est dui, at maximus mi laoreet,",
-                          color: Colors.white,
-                        )
-                      ],
+                Stack(
+                  children: [
+                    Image.asset(
+                      "assets/images/bg-2.png",
+                      fit: BoxFit.contain,
                     ),
+                    Positioned(
+                      top: 8,
+                      // left: 8,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            StyledText(
+                              "Lorem ipsum dolor sit amet, consectetur adipisci",
+                              color: Colors.white,
+                            ),
+                            StyledText(
+                              "Cras consectetur est dui, at maximus mi laoreet,",
+                              color: Colors.white,
+                            ),
+                            StyledText(
+                              " est dui, at maximus mi laoreet,",
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: StyledButton(
+                      onPressed: () {},
+                      child: StyledText(
+                        "view more",
+                        color: Colors.white,
+                      )),
+                ),
+
+                const SizedBox(
+                  height: 20,
+                ),
+                StyledHeading("Best Selling"),
+                // GridView without scrolling
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: CustomScrollView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    slivers: [
+                      SliverGrid(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 35.0,
+                          mainAxisSpacing: 0.0,
+                          childAspectRatio: 0.55,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                            return ProductCart(_products[index]);
+                          },
+                          childCount: _products.length,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: StyledButton(
-                  onPressed: () {},
-                  child: StyledText(
-                    "view more",
-                    color: Colors.white,
-                  )),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            StyledHeading("Best Selling"),
-            Expanded(
-              child: GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 35.0,
-                  mainAxisSpacing: 0.0,
-                  childAspectRatio: 0.55,
-                  children: List.generate(_products.length, (index) {
-                    return ProductCart(_products[index]);
-                  })),
-            ),
-          ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
